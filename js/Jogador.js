@@ -1,13 +1,13 @@
 class Jogador{
-    constructor(cor){
+    constructor(simbolo){
         this.jogadas = 9
-        this.cor = cor
+        this.simbolo = simbolo
     }
 
     jogada(){
         if (this.jogadas != 0)
         this.jogadas -= 1
-        return this.cor
+        return this.simbolo
     }
     fez_moinho(){
         return ''
