@@ -58,10 +58,11 @@
             <div></div>
         </div>
     </div>
-
-    <script src="js/trilha.js"></script>
+    <script src="js/Trilha.js"></script>
+    <script src="js/Man.js"></script>
+    <script src="js/Jogador.js"></script>
     <script>
-        trilha.init( document.querySelector('.game'));
+        const trilha = new Trilha( document.querySelector('.game') );
         trilha.draw();
     </script>
 </body>
