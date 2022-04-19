@@ -2,6 +2,7 @@ class Jogador{
     constructor(simbolo){
         this.jogadas = 9
         this.simbolo = simbolo
+        this.remover = false
     }
 
     jogada(){
@@ -10,6 +11,11 @@ class Jogador{
         return this.simbolo
     }
     fez_moinho(){
+        this.remover = true
+        return ''
+    }
+    removeu_moinho(){
+        this.remover = false
         return ''
     }
 }
