@@ -44,33 +44,68 @@ class Trilha{
 
     draw(){
         let content = '';
-        let index = 0;
-        this.tabuleiro.forEach(function(homem){
+        this.tabuleiro.forEach(function(homem, index){
             content += '<div class="'+ homem.posicao +'"> <div onclick="trilha.jogada(' + index +')" class="bola" style="background:'+ homem.simbolo+';">' + homem.posicao +'-'+ index + '</div> </div>';
-            index ++;
         })
-
         this.container_element.innerHTML = content;
     }
 
     jogada(index){
-        if(this.gameOver) return false;
-        if(this.tabuleiro[index].simbolo === ''){
+        if(this.gameOver){
+            console.log('ACABOU')
+            return false;
+        } 
+        if(this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas <= 0 ){
+            this.gameOver = true
+            return false
+        }
+        if(this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
+            this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
+            this.draw();
+            this.verifica_removeu_moinho();
+            this.jogadores.opcoes[this.jogadores.jogadorAtual].remover = false
+            this.jogadores.trocar();
+        }else if(this.tabuleiro[index].simbolo === '' && !this.jogadores.opcoes[this.jogadores.jogadorAtual].remover ){
             this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].jogada()
             this.draw();
             this.verifica_moinho(this.tabuleiro[index].simbolo)
             this.jogadores.trocar();
         }
+        console.log('prox: ' + this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo +' '+ this.jogadores.opcoes[this.jogadores.jogadorAtual].remover +' '+this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas)
     }
 
     verifica_moinho(simbolo){
         this.moinhos_possiveis.forEach(function(sequencia,i){
             if(trilha.tabuleiro[trilha.moinhos_possiveis[i][0]].simbolo == simbolo && trilha.tabuleiro[trilha.moinhos_possiveis[i][1]].simbolo == simbolo && trilha.tabuleiro[trilha.moinhos_possiveis[i][2]].simbolo == simbolo){
-                trilha.moinhos_feitos.push(trilha.moinhos_possiveis.pop(i))
+                trilha.moinhos_possiveis.splice(i,1)
+                trilha.moinhos_feitos.push(sequencia)
+                trilha.jogadores.opcoes[trilha.jogadores.jogadorAtual].fez_moinho()
+                trilha.jogadores.trocar();
                 return sequencia;
             }
         })
         return -1;
     }
     
+    verifica_removeu_moinho(){
+        let simbolo = this.simbolo_outroJogador()
+        this.moinhos_feitos.forEach(function(sequencia, i){
+            if(trilha.tabuleiro[trilha.moinhos_feitos[i][0]].simbolo == simbolo || trilha.tabuleiro[trilha.moinhos_feitos[i][1]].simbolo == simbolo || trilha.tabuleiro[trilha.moinhos_feitos[i][2]].simbolo == simbolo){
+                console.log('moinho removido: '+ trilha.moinhos_feitos[i])
+                trilha.moinhos_feitos.splice(i,1)
+                trilha.moinhos_possiveis.push(sequencia)
+                trilha.jogadores.opcoes[trilha.jogadores.jogadorAtual].removeu_moinho()
+                console.log('removeu moinho')
+                return 1;
+            }
+        })
+        return -1;
+    }
+
+    simbolo_outroJogador(){
+        this.jogadores.trocar();
+        let simb = this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo;
+        this.jogadores.trocar();
+        return simb;
+    }
 }
