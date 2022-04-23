@@ -3,7 +3,7 @@ class Trilha{
         this.container_element = container;
         this.gameOver = false;
         this.jogadores = {
-            opcoes: [new Jogador("black"), new Jogador("white")],
+            opcoes: [new Jogador("orangered"), new Jogador("#8a2be2")],
             jogadorAtual: 0,
             trocar: function(){
                 this.jogadorAtual = (this.jogadorAtual === 0) ? 1: 0;
