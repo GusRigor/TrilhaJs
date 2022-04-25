@@ -78,7 +78,7 @@ class Trilha{
     desenhar(){
         let content = '';
         this.tabuleiro.forEach(function(homem, index){
-            content += '<div class="'+ homem.posicao +'"> <div onclick="trilha.jogada(' + index +')" class="bola" style="background:'+ homem.simbolo+';">' + homem.posicao +'-'+ index + '</div> </div>';
+            content += '<div class="'+ homem.posicao +'"> <div onclick="trilha.jogada(' + index +')" class="bola" style="background:'+ homem.simbolo+';">' + "" + '</div> </div>';
         })
         this.container_element.innerHTML = content;
     }
