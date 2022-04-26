@@ -7,6 +7,20 @@ h1 {
     font-size: 38px;
 }
 
+section .menu{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
 header .game{
     border-color: #008000;
 }
