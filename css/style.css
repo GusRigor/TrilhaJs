@@ -6,3 +6,64 @@ h1 {
     color: whitesmoke;
     font-size: 38px;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../img/matrix.jpeg');
+    background-position: center;
+    background-size: cover;
+}
+
+a{
+    text-decoration: none;
+}
+
+header .menu{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+header .menu li{
+    display: inline-block;
+}
+
+header .menu a{
+    color: white;
+    padding: 8px 12px;
+    border-radius: 3px;
+    transition: 200ms;
+}
+
+header .menu .ativo, header .menu a:hover{
+    color: #444;
+    background-color: white;
+}
+
+.main{
+    color:ghostwhite;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main .link .ativo, a:hover{
+    color: white;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: darkgreen;
+    transition: 200ms;
+}
