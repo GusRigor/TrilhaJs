@@ -7,18 +7,16 @@ h1 {
     font-size: 38px;
 }
 
-section .menu{
+h3{
     position: fixed;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px;
+    border-color: white;
+    border-radius: 1px;
+    padding: 20px;
 }
 
 a{
+    font-size: 25px;
     color: white;
-    text-decoration: none;
 }
 
 header .game{
