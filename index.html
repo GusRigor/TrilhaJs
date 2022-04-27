@@ -1,71 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html>
+<head lang="pt-BR">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-widtht, initial-scale=1.0">
     <title>TrilhaJs</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/trilha.css">
 </head>
 <body>
     <header>
-        <h1>TrilhaJs</h1>
-        <h3><a href="site.html">Home</a>
-        </h3>
+        <nav class="menu">
+            <a href="" class="logo">JOGO DA TRILHA</a>
+            <ul>
+                <li><a href="index.html" class="ativo">Home</a></li>
+                <li><a href="https://www.megajogos.com.br/trilha-online/regras">Como jogar</a></li>
+                <li><a href="https://github.com/GusRigor/TrilhaJs">Repositório</a></li>
+            </ul>
+        </nav> <!-- menu -->
 
-        <div class="game">
-            <!--Primeira Linha-->
-            <div class="LinhaGrande">
-                <div></div>
-                <div></div>
-                <div></div>
+        <section class="main">
+            <h2>TRILHA</h2>
+            <div class="link">
+                <a href="trilha.html">Iniciar</a>
             </div>
-            <!--Segunda Linha-->
-            <div class="LinhaMedia">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!--Terceira Linha-->
-            <div class="LinhaPequena">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!--Quarta Linha-->
-            <div class="LinhaDupla">
-                <div></div>
-                <div></div>
-                <div></div>
-
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!--Quinta Linha-->
-            <div class="LinhaPequena">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!--Sexta Linha-->
-            <div class="LinhaMedia">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <!--Sétima Linha-->
-            <div class="LinhaGrande">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        </header>
-    <script src="js/trilha.js"></script>
-    <script src="js/Man.js"></script>
-    <script src="js/Jogador.js"></script>
-    <script>
-        const trilha = new Trilha( document.querySelector('.game') );
-        trilha.jogar();
-    </script>
+        </section> <!-- Click n play -->
+    </header>
 </body>
 </html>
