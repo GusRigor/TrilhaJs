@@ -9,35 +9,8 @@ class Trilha{
                 this.jogadorAtual = (this.jogadorAtual === 0) ? 1: 0;
             }
         }
-        this.tabuleiro = [
-            new Man("A7",''), new Man("D7",''), new Man("G7",''),
-            new Man("B6",''), new Man("D6",''), new Man("F6",''),
-            new Man("C5",''), new Man("D5",''), new Man("E5",''),
-        
-            new Man("A4",''), new Man("B4",''), new Man("C4",''),new Man("E4",''), new Man("F4",''), new Man("G4",''),
-            
-            new Man("C3",''), new Man("D3",''), new Man("E3",''),
-            new Man("B2",''), new Man("D2",''), new Man("F2",''),
-            new Man("A1",''), new Man("D1",''), new Man("G1",'')
-        ];;
-        this.moinhos_possiveis = [
-            //['A1','D1','G1'], ['A1','A4','A7'],
-            [21,22,23], [21,9,0],
-            //['D1','D2','D3'], ['G1','G4','G7'],
-            [22,19,16], [23,14,2],
-            //['B2','D2','F2'], ['B2','B4','B6'],
-            [18,19,20], [18,10,3],
-            //['F2','F4','F6'], ['C3','D3','E3'],
-            [20,13,5], [15,16,17],
-            //['C3','C4','C5'], ['E3','E4','E5'],
-            [15,11,6], [17,12,8],
-            //['A4','B4','C4'], ['E4','F4','G4'],
-            [9,10,11], [12,13,14],
-            //['C5','D5','E8'], ['D5','D6','D7']
-            [6,7,8], [7,4,1],
-            //['B6','D6','F6'], ['A7','D7','G7']
-            [3,4,5], [0,1,2]
-        ];;
+        this.tabuleiro = [];
+        this.moinhos_possiveis = [];
         this.moinhos_feitos = []
     }
 
