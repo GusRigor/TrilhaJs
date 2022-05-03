@@ -76,7 +76,7 @@ class Trilha{
             this.jogar()
             return false
         };
-        if(this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas <= 0 ){
+        if(this.jogadores.opcoes[this.jogadores.jogadorAtual].pecas <= 0 && this.jogadores.opcoes[this.jogadores.jogadorAtual] ){
             if(this.jogadas <= 0 && !this.segundaJogada){
                 this.jogo_acabou();
 
@@ -84,15 +84,18 @@ class Trilha{
             }else if(!this.segundaJogada && this.tabuleiro[index].simbolo === this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo){
                 this.indexAnterior = index
                 this.segundaJogada = true
-                this.jogadas--
+                if(this.jogadores.opcoes[0].peca_tabuleiro == 3 && this.jogadores.opcoes[0].peca_tabuleiro == 3){
+                    this.jogadas--
+                }
                 console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
             }else if(!this.segundaJogada && this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
                 this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
                 this.desenhar();
                 this.verifica_removeu_moinho();
                 this.jogadores.opcoes[this.jogadores.jogadorAtual].remover = false
-                console.log("removeu moinho1")
+                console.log("removeu uma peca")
                 this.jogadores.trocar()
+                this.jogadores.opcoes[this.jogadores.jogadorAtual].peca_tabuleiro --;
             }else if(this.segundaJogada){
                 if(this.movimentos_possiveis[this.indexAnterior].includes(index) && this.tabuleiro[index].simbolo === ''){
                     this.tabuleiro[this.indexAnterior].simbolo = ''
@@ -111,6 +114,7 @@ class Trilha{
                 this.verifica_removeu_moinho();
                 this.jogadores.opcoes[this.jogadores.jogadorAtual].remover = false
                 this.jogadores.trocar();
+                this.jogadores.opcoes[this.jogadores.jogadorAtual].peca_tabuleiro --;
             }else if(this.tabuleiro[index].simbolo === '' && !this.jogadores.opcoes[this.jogadores.jogadorAtual].remover){
                 this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].jogada()
                 this.desenhar();
