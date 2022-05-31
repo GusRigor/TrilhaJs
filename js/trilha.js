@@ -72,11 +72,15 @@ class Trilha{
     }
 
     jogada(index){
+
+        //Jogo acabou
         if(this.gameOver){ 
             this.jogar()
             return false
         };
-        if(this.jogadores.opcoes[this.jogadores.jogadorAtual].pecas <= 0 && this.jogadores.opcoes[this.jogadores.jogadorAtual] ){
+
+
+        if(this.pecas_jogador_atual() <= 0 && this.jogadores.opcoes[this.jogadores.jogadorAtual] ){
             if(this.jogadas <= 0 && !this.segundaJogada){
                 this.jogo_acabou();
 
@@ -158,6 +162,10 @@ class Trilha{
         })
         return -1;
     }
+
+    pecas_jogador_atual(){
+        return this.jogadores.opcoes[this.jogadores.jogadorAtual].pecas
+    };
 
     simbolo_outroJogador(){
         this.jogadores.trocar();
