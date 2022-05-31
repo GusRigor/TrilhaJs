@@ -2,7 +2,7 @@ class Trilha{
     constructor(container){
         this.container_element = container;
         this.gameOver = false;
-        this.segundaJogada = false;
+        this.jogadaComplementar = false;
         this.indexAnterior = 0;
         this.jogadas = 10;
         this.jogadores = {
@@ -81,18 +81,18 @@ class Trilha{
 
 
         if(this.pecas_jogador_atual() <= 0 && this.jogadores.opcoes[this.jogadores.jogadorAtual] ){
-            if(this.jogadas <= 0 && !this.segundaJogada){
+            if(this.jogadas <= 0 && !this.jogadaComplementar){
                 this.jogo_acabou();
 
             //Jogadas de movimentar peças
-            }else if(!this.segundaJogada && this.tabuleiro[index].simbolo === this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo){
+            }else if(!this.jogadaComplementar && this.tabuleiro[index].simbolo === this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo){
                 this.indexAnterior = index
-                this.segundaJogada = true
+                this.jogadaComplementar = true
                 if(this.jogadores.opcoes[0].peca_tabuleiro == 3 && this.jogadores.opcoes[0].peca_tabuleiro == 3){
                     this.jogadas--
                 }
                 console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
-            }else if(!this.segundaJogada && this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
+            }else if(!this.jogadaComplementar && this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
                 this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
                 this.desenhar();
                 this.verifica_removeu_moinho();
@@ -100,18 +100,18 @@ class Trilha{
                 console.log("removeu uma peca")
                 this.jogadores.trocar()
                 this.jogadores.opcoes[this.jogadores.jogadorAtual].peca_tabuleiro --;
-            }else if(this.segundaJogada){
+            }else if(this.jogadaComplementar){
                 if(this.movimentos_possiveis[this.indexAnterior].includes(index) && this.tabuleiro[index].simbolo === ''){
                     this.tabuleiro[this.indexAnterior].simbolo = ''
                     this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].jogada()
                     this.desenhar();
                     if(this.verifica_moinho(this.tabuleiro[index].simbolo) == -1){
-                        this.segundaJogada = false
+                        this.jogadaComplementar = false
                     }
                     this.jogadores.trocar();
                 }
             }
-        }else if(!this.segundaJogadas){
+        }else if(!this.jogadaComplementars){
             if(this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
                 this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
                 this.desenhar();
@@ -126,7 +126,7 @@ class Trilha{
                 this.jogadores.trocar();
             }
         };     
-        console.log('prox: ' + this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo +' '+ this.jogadores.opcoes[this.jogadores.jogadorAtual].remover +' '+this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas + " "+ this.segundaJogada)
+        console.log('prox: ' + this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo +' '+ this.jogadores.opcoes[this.jogadores.jogadorAtual].remover +' '+this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas + " "+ this.jogadaComplementar)
     }
 
     jogo_acabou(){
