@@ -76,23 +76,26 @@ class Trilha{
         //Jogo acabou
         if(this.gameOver){ 
             this.jogar()
+            //Fazer aparecer que o jogo acabou e que ele pode reiniciar o jogo
             return false
         };
 
 
         if(this.pecas_jogador_atual() <= 0 && this.jogador_atual() ){
-            if(this.jogadas <= 0 && !this.jogadaComplementar){
+
+            //Verifica se o jogo acabou e mostra a tela
+            if(this.jogadas <= 0 && this.e_primeira_jogada()){
                 this.jogo_acabou();
 
-            //Jogadas de movimentar peças
-            }else if(!this.jogadaComplementar && this.tabuleiro[index].simbolo === this.jogador_atual().simbolo){
+            }else if(this.e_primeira_jogada() && this.tabuleiro[index].simbolo === this.jogador_atual().simbolo){
                 this.indexAnterior = index
                 this.jogadaComplementar = true
                 if(this.jogadores.opcoes[0].peca_tabuleiro == 3 && this.jogadores.opcoes[0].peca_tabuleiro == 3){
                     this.jogadas--
                 }
                 console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
-            }else if(!this.jogadaComplementar && this.jogador_atual().remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
+                
+            }else if(this.e_primeira_jogada() && this.jogador_atual().remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
                 this.verifica_removeu_moinho();
@@ -111,7 +114,7 @@ class Trilha{
                     this.jogadores.trocar();
                 }
             }
-        }else if(!this.jogadaComplementars){
+        }else if(this.e_primeira_jogada()){
             if(this.jogador_atual().remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
@@ -170,6 +173,12 @@ class Trilha{
     jogador_atual(){
         return this.jogadores.opcoes[this.jogadores.jogadorAtual]
     }
+
+    e_primeira_jogada(){
+        return !this.jogadaComplementar
+    }
+
+
 
     simbolo_outroJogador(){
         this.jogadores.trocar();
