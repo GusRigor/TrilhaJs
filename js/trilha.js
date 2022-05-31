@@ -80,30 +80,30 @@ class Trilha{
         };
 
 
-        if(this.pecas_jogador_atual() <= 0 && this.jogadores.opcoes[this.jogadores.jogadorAtual] ){
+        if(this.pecas_jogador_atual() <= 0 && this.jogador_atual() ){
             if(this.jogadas <= 0 && !this.jogadaComplementar){
                 this.jogo_acabou();
 
             //Jogadas de movimentar peças
-            }else if(!this.jogadaComplementar && this.tabuleiro[index].simbolo === this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo){
+            }else if(!this.jogadaComplementar && this.tabuleiro[index].simbolo === this.jogador_atual().simbolo){
                 this.indexAnterior = index
                 this.jogadaComplementar = true
                 if(this.jogadores.opcoes[0].peca_tabuleiro == 3 && this.jogadores.opcoes[0].peca_tabuleiro == 3){
                     this.jogadas--
                 }
                 console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
-            }else if(!this.jogadaComplementar && this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
-                this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
+            }else if(!this.jogadaComplementar && this.jogador_atual().remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
+                this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
                 this.verifica_removeu_moinho();
-                this.jogadores.opcoes[this.jogadores.jogadorAtual].remover = false
+                this.jogador_atual().remover = false
                 console.log("removeu uma peca")
                 this.jogadores.trocar()
-                this.jogadores.opcoes[this.jogadores.jogadorAtual].peca_tabuleiro --;
+                this.jogador_atual().peca_tabuleiro --;
             }else if(this.jogadaComplementar){
                 if(this.movimentos_possiveis[this.indexAnterior].includes(index) && this.tabuleiro[index].simbolo === ''){
                     this.tabuleiro[this.indexAnterior].simbolo = ''
-                    this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].jogada()
+                    this.tabuleiro[index].simbolo = this.jogador_atual().jogada()
                     this.desenhar();
                     if(this.verifica_moinho(this.tabuleiro[index].simbolo) == -1){
                         this.jogadaComplementar = false
@@ -112,21 +112,21 @@ class Trilha{
                 }
             }
         }else if(!this.jogadaComplementars){
-            if(this.jogadores.opcoes[this.jogadores.jogadorAtual].remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
-                this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
+            if(this.jogador_atual().remover && this.tabuleiro[index].simbolo === this.simbolo_outroJogador()){
+                this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
                 this.verifica_removeu_moinho();
-                this.jogadores.opcoes[this.jogadores.jogadorAtual].remover = false
+                this.jogador_atual().remover = false
                 this.jogadores.trocar();
-                this.jogadores.opcoes[this.jogadores.jogadorAtual].peca_tabuleiro --;
-            }else if(this.tabuleiro[index].simbolo === '' && !this.jogadores.opcoes[this.jogadores.jogadorAtual].remover){
-                this.tabuleiro[index].simbolo = this.jogadores.opcoes[this.jogadores.jogadorAtual].jogada()
+                this.jogador_atual().peca_tabuleiro --;
+            }else if(this.tabuleiro[index].simbolo === '' && !this.jogador_atual().remover){
+                this.tabuleiro[index].simbolo = this.jogador_atual().jogada()
                 this.desenhar();
                 this.verifica_moinho(this.tabuleiro[index].simbolo)
                 this.jogadores.trocar();
             }
         };     
-        console.log('prox: ' + this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo +' '+ this.jogadores.opcoes[this.jogadores.jogadorAtual].remover +' '+this.jogadores.opcoes[this.jogadores.jogadorAtual].jogadas + " "+ this.jogadaComplementar)
+        console.log('prox: ' + this.jogador_atual().simbolo +' '+ this.jogador_atual().remover +' '+this.jogador_atual().jogadas + " "+ this.jogadaComplementar)
     }
 
     jogo_acabou(){
@@ -164,12 +164,16 @@ class Trilha{
     }
 
     pecas_jogador_atual(){
-        return this.jogadores.opcoes[this.jogadores.jogadorAtual].pecas
+        return this.jogador_atual().pecas
     };
+
+    jogador_atual(){
+        return this.jogadores.opcoes[this.jogadores.jogadorAtual]
+    }
 
     simbolo_outroJogador(){
         this.jogadores.trocar();
-        let simb = this.jogadores.opcoes[this.jogadores.jogadorAtual].simbolo;
+        let simb = this.jogador_atual().simbolo;
         this.jogadores.trocar();
         return simb;
     }
