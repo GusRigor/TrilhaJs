@@ -72,7 +72,7 @@ class Trilha{
     }
 
     jogada(index){
-
+        console.log(index)
         //Jogo acabou
         if(this.gameOver){ 
             this.jogar()
@@ -200,3 +200,38 @@ class Trilha{
         return simb;
     }
 }
+
+class Jogador{
+    constructor(simbolo){
+        this.pecas = 9
+        this.peca_tabuleiro = 0
+        this.simbolo = simbolo
+        this.remover = false
+    }
+
+    jogada(){
+        if (this.pecas != 0){
+            this.pecas -= 1
+            this.peca_tabuleiro += 1
+        }
+        return this.simbolo
+    }
+    fez_moinho(){
+        this.remover = true
+        return ''
+    }
+    removeu_moinho(){
+        this.remover = false
+        return ''
+    }
+}
+
+class Man{
+    constructor(posicao, simbolo){
+        this.posicao = posicao
+        this.simbolo = simbolo
+    }
+}
+
+const trilha_teste = new Trilha('container');
+module.exports = trilha_teste
