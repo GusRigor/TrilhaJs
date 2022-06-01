@@ -143,7 +143,7 @@ class Trilha{
 
     jogo_acabou(){
         this.gameOver = true
-        console.log('ACABOU')
+        alert('Acabou, clique novamente para recomeçar')
     }
 
     verifica_moinho(simbolo){
