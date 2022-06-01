@@ -1,13 +1,16 @@
 class Jogador{
     constructor(simbolo){
-        this.jogadas = 9
+        this.pecas = 9
+        this.peca_tabuleiro = 0
         this.simbolo = simbolo
         this.remover = false
     }
 
     jogada(){
-        if (this.jogadas != 0)
-        this.jogadas -= 1
+        if (this.pecas != 0){
+            this.pecas -= 1
+            this.peca_tabuleiro += 1
+        }
         return this.simbolo
     }
     fez_moinho(){

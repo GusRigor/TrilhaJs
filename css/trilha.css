@@ -5,6 +5,7 @@
     margin: 0 auto;
     padding: 15px;
     background-color: rgb(5, 2, 2, .97);
+    background-image: url("../img/bg_trilha.png");
     color: orangered;
     border: 6px solid white;
     border-radius: 2px;
@@ -24,7 +25,7 @@
 }
 
 .bola{
-    background:rgb(0, 0, 0, .77);;
+    background:rgb(0, 0, 0);;
     border-radius: 50%;
     width: 50px;
     height: 50px;
