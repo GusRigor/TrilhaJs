@@ -96,10 +96,9 @@ class Trilha{
                 }
                 console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
                 
-            }else if(this.e_primeira_jogada() && this.jogador_atual().remover && this.simbolo_do_oponente(index)){
+            }else if(this.e_primeira_jogada() && this.jogador_atual().remover && this.simbolo_do_oponente(index) && this.nao_faz_parte_moinho(index)){
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
-                this.verifica_removeu_moinho();
                 this.jogador_atual().remover = false
                 console.log("removeu uma peca")
                 this.jogadores.trocar()
@@ -123,10 +122,10 @@ class Trilha{
             
         }else if(this.e_primeira_jogada()){
 
-            if(this.jogador_atual().remover && this.simbolo_do_oponente(index)){
+            if(this.jogador_atual().remover && this.simbolo_do_oponente(index) && this.nao_faz_parte_moinho(index)){
+                alert('remover peca')
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
-                this.verifica_removeu_moinho();
                 this.jogador_atual().remover = false
                 this.jogadores.trocar();
                 this.jogador_atual().peca_tabuleiro --;
@@ -160,20 +159,18 @@ class Trilha{
         })
         return -1;
     }
-    
-    verifica_removeu_moinho(){
-        let simbolo = this.simbolo_outroJogador()
-        this.moinhos_feitos.forEach(function(sequencia, i){
-            if(trilha.tabuleiro[trilha.moinhos_feitos[i][0]].simbolo == simbolo || trilha.tabuleiro[trilha.moinhos_feitos[i][1]].simbolo == simbolo || trilha.tabuleiro[trilha.moinhos_feitos[i][2]].simbolo == simbolo){
-                console.log('moinho removido: '+ trilha.moinhos_feitos[i])
-                trilha.moinhos_feitos.splice(i,1)
-                trilha.moinhos_possiveis.push(sequencia)
-                trilha.jogadores.opcoes[trilha.jogadores.jogadorAtual].removeu_moinho()
-                console.log('removeu moinho')
-                return 1;
+
+    nao_faz_parte_moinho(index){
+        var nao_faz = false
+        this.moinhos_feitos.every(function(_sequencia, i){
+            if(trilha.moinhos_feitos[i][0] == index || trilha.moinhos_feitos[i][1] == index || trilha.moinhos_feitos[i][2] == index){
+                nao_faz = false
+            }else{
+                nao_faz = true
             }
         })
-        return -1;
+
+        return nao_faz
     }
 
     pecas_jogador_atual(){
