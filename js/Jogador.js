@@ -17,8 +17,7 @@ class Jogador{
         this.remover = true
         return ''
     }
-    removeu_moinho(){
-        this.remover = false
-        return ''
-    }
 }
+
+const jogador_teste = new Jogador("blue");
+module.exports = jogador_teste
