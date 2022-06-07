@@ -123,7 +123,7 @@ class Trilha{
         }else if(this.e_primeira_jogada()){
 
             if(this.jogador_atual().remover && this.simbolo_do_oponente(index) && this.nao_faz_parte_moinho(index)){
-                alert('remover peca')
+
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
                 this.jogador_atual().remover = false
@@ -148,27 +148,27 @@ class Trilha{
 
     verifica_moinho(simbolo){
         this.moinhos_possiveis.forEach(function(sequencia,i){
-            if(trilha.tabuleiro[trilha.moinhos_possiveis[i][0]].simbolo == simbolo && trilha.tabuleiro[trilha.moinhos_possiveis[i][1]].simbolo == simbolo && trilha.tabuleiro[trilha.moinhos_possiveis[i][2]].simbolo == simbolo){
-                trilha.moinhos_possiveis.splice(i,1)
-                trilha.moinhos_feitos.push(sequencia)
-                trilha.jogadores.opcoes[trilha.jogadores.jogadorAtual].fez_moinho()
-                trilha.jogadores.trocar();
+            if(this.tabuleiro[this.moinhos_possiveis[i][0]].simbolo == simbolo && this.tabuleiro[this.moinhos_possiveis[i][1]].simbolo == simbolo && this.tabuleiro[this.moinhos_possiveis[i][2]].simbolo == simbolo){
+                this.moinhos_possiveis.splice(i,1)
+                this.moinhos_feitos.push(sequencia)
+                this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
+                this.jogadores.trocar();
                 console.log('moinho feito: '+ sequencia)
                 return sequencia;
             }
-        })
+        }, this)
         return -1;
     }
 
     nao_faz_parte_moinho(index){
         var nao_faz = false
         this.moinhos_feitos.every(function(_sequencia, i){
-            if(trilha.moinhos_feitos[i][0] == index || trilha.moinhos_feitos[i][1] == index || trilha.moinhos_feitos[i][2] == index){
+            if(this.moinhos_feitos[i][0] == index || this.moinhos_feitos[i][1] == index || this.moinhos_feitos[i][2] == index){
                 nao_faz = false
             }else{
                 nao_faz = true
             }
-        })
+        }, this)
 
         return nao_faz
     }
@@ -233,5 +233,5 @@ class Man{
     }
 }
 
-const trilha_teste = new Trilha('container');
+const trilha_teste = new Trilha('game');
 module.exports = trilha_teste
