@@ -1,7 +1,46 @@
 <html>
-  <head>
+  <head lang="pt-BR">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-widtht, initial-scale=1.0">
+    <title>FMU - Autenticado</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   </head>
+    <script>
+      function gerarCodigo() {
+        function uuid() {
+
+// Retorna um número randômico entre 0 e 15.
+function randomDigit() {
+
+    // Se o browser tiver suporte às bibliotecas de criptografia, utilize-as;
+    if (crypto && crypto.getRandomValues) {
+    
+        // Cria um array contendo 1 byte:
+        var rands = new Uint8Array(1);
+        
+        // Popula o array com valores randômicos
+        crypto.getRandomValues(rands);
+        
+        // Retorna o módulo 16 do único valor presente (%16) em formato hexadecimal
+        return (rands[0] % 16).toString(16);
+    } else {
+    // Caso não, utilize random(), que pode ocasionar em colisões (mesmos valores
+    // gerados mais frequentemente):
+        return ((Math.random() * 16) | 0).toString(16);
+    }
+}
+
+// A função pode utilizar a biblioteca de criptografia padrão, ou
+// msCrypto se utilizando um browser da Microsoft anterior à integração.
+var crypto = window.crypto || window.msCrypto;
+
+// para cada caracter [x] na string abaixo um valor hexadecimal é gerado via
+// replace:
+return 'xxxxxxxx-xxxx-4xxx-8xxx'.replace(/x/g, randomDigit);
+}
+        document.getElementById("codigo-autenticado").textContent = "Código de autenticação: "+uuid();
+      }
+    </script>
     <style>
       body {
         text-align: center;
@@ -21,28 +60,48 @@
           font-size:20px;
           margin: 0;
         }
-      i {
-        color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left:-15px;
+      img {
+        width: 85px;
       }
       .card {
         background: white;
-        padding: 60px;
         border-radius: 4px;
         box-shadow: 0 2px 3px #C8D0D8;
         display: inline-block;
         margin: 0 auto;
       }
+      .logo {
+        padding-top: 40px;
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .documento {
+        padding-bottom: 40px;
+        padding-left: 50px;
+        padding-right: 40px;
+      }
+      .autenticado {
+        text-align: right;
+        font-size:12px;
+        padding-left: 50px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+      }
     </style>
     <body>
       <div class="card">
-      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
+      <div class="logo">
+        <img src="https://portal.fmu.br/wp-content/uploads/geral/header/logo-fmu.svg" alt="FMU">
       </div>
-        <h1>Sucesso</h1> 
-        <p>Carteirinha válida até dezembro de 2023!</p>
+      <div class="documento">
+        <p>Documento autenticado</p>
       </div>
+        <div>
+          <p class="autenticado" id="codigo-autenticado"></p>
+        </div>
+      </div>
+      <script>
+        gerarCodigo();
+    </script>
     </body>
 </html>

@@ -72,7 +72,7 @@ class Trilha{
     }
 
     jogada(index){
-        console.log(index)
+        //console.log(index)
         //Jogo acabou
         if(this.gameOver){ 
             this.jogar()
@@ -94,13 +94,13 @@ class Trilha{
                 if(this.jogadores.opcoes[0].peca_tabuleiro == 3 && this.jogadores.opcoes[0].peca_tabuleiro == 3){
                     this.jogadas--
                 }
-                console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
+                //console.log('Primeira jogada. Contador de jogadas em: ' + this.jogadas)
                 
             }else if(this.e_primeira_jogada() && this.jogador_atual().remover && this.simbolo_do_oponente(index) && this.nao_faz_parte_moinho(index)){
                 this.tabuleiro[index].simbolo = this.jogador_atual().fez_moinho()
                 this.desenhar();
                 this.jogador_atual().remover = false
-                console.log("removeu uma peca")
+                //console.log("removeu uma peca")
                 this.jogadores.trocar()
                 this.jogador_atual().peca_tabuleiro --;
 
@@ -138,7 +138,7 @@ class Trilha{
             }
 
         };     
-        console.log('prox: ' + this.jogador_atual().simbolo +' '+ this.jogador_atual().remover +' '+this.jogador_atual().jogadas + " "+ this.jogadaComplementar)
+        //console.log('prox: ' + this.jogador_atual().simbolo +' '+ this.jogador_atual().remover +' '+this.jogador_atual().jogadas + " "+ this.jogadaComplementar)
     }
 
     jogo_acabou(){
@@ -153,7 +153,7 @@ class Trilha{
                 this.moinhos_feitos.push(sequencia)
                 this.jogadores.opcoes[this.jogadores.jogadorAtual].fez_moinho()
                 this.jogadores.trocar();
-                console.log('moinho feito: '+ sequencia)
+                //console.log('moinho feito: '+ sequencia)
                 return sequencia;
             }
         }, this)
